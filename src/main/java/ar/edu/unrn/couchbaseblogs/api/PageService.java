@@ -1,7 +1,8 @@
 package ar.edu.unrn.couchbaseblogs.api;
 
 
-import couchbaseblogspringboot.model.Page;
+import ar.edu.unrn.couchbaseblogs.model.Page;
+
 import java.util.List;
 
 public interface PageService {

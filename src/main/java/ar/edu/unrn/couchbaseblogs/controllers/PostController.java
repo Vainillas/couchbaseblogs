@@ -1,8 +1,8 @@
 package ar.edu.unrn.couchbaseblogs.controllers;
 
-import couchbaseblogspringboot.api.PostService;
-import couchbaseblogspringboot.dto.AuthorPostCount;
-import couchbaseblogspringboot.model.Post;
+import ar.edu.unrn.couchbaseblogs.api.PostService;
+import ar.edu.unrn.couchbaseblogs.dto.AuthorPostCount;
+import ar.edu.unrn.couchbaseblogs.model.Post;
 import java.util.List;
 import org.springframework.web.bind.annotation.*;
 

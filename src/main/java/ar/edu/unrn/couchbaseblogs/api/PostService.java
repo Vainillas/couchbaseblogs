@@ -1,7 +1,9 @@
 package ar.edu.unrn.couchbaseblogs.api;
 
-import couchbaseblogspringboot.dto.AuthorPostCount;
-import couchbaseblogspringboot.model.Post;
+
+import ar.edu.unrn.couchbaseblogs.dto.AuthorPostCount;
+import ar.edu.unrn.couchbaseblogs.model.Post;
+
 import java.util.List;
 
 public interface PostService {
