@@ -1,9 +1,9 @@
 package ar.edu.unrn.couchbaseblogs.services;
 
+import ar.edu.unrn.couchbaseblogs.exceptions.BusinessException;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
 import com.couchbase.client.java.Collection;
-import couchbaseblogspringboot.exceptions.BusinessException;
 import java.util.function.Function;
 
 public abstract class CouchBaseService {
