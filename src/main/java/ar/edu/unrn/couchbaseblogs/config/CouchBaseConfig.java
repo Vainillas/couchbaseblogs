@@ -47,34 +47,12 @@ public class CouchBaseConfig extends AbstractCouchbaseConfiguration {
   public CouchBaseConfig(@Qualifier("couchbaseEnvironment") ClusterEnvironment environment) {
       this.environment = environment;
   }
-  @Override
-  public CustomConversions customConversions() {
-    return new CustomConversions(Arrays.asList(LocalDateToStringConverter.INSTANCE, StringToLocalDateConverter.INSTANCE));
-  }
 
 
   @Bean
   public Cluster couchBaseCluster(){
     return Cluster.connect(getConnectionString(),
             ClusterOptions.clusterOptions(getUserName(), getPassword()).environment(environment));
-  }
-
-  @WritingConverter
-  public static enum LocalDateToStringConverter implements Converter<LocalDate, String> {
-    INSTANCE;
-
-    @Override
-    public String convert(LocalDate source) {
-      return source.toString(); // Convierte LocalDate a "yyyy-MM-dd"
-    }
-  }
-  @ReadingConverter
-  public static enum StringToLocalDateConverter implements Converter<String, LocalDate> {
-    INSTANCE;
-    @Override
-    public LocalDate convert(String source) {
-      return LocalDate.parse(source); // Convierte String a LocalDate
-    }
   }
 
 }
