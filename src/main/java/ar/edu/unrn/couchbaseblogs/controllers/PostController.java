@@ -20,7 +20,7 @@ public class PostController {
         return this.postService.getLatest4Posts();
     }
     @GetMapping("/{id}")
-    public List<Post> getPostById(@PathVariable String id) {
+    public Post getPostById(@PathVariable String id) {
         // Implementa la lógica para recuperar un post por su ID
         return this.postService.findPost(id);
     }

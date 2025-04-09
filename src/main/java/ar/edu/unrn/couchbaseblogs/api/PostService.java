@@ -15,7 +15,7 @@ public interface PostService {
 
     List<AuthorPostCount> getPostCounts();
 
-    List<Post> findPost(String id);
+    Post findPost(String id);
 
     Post insertPost(Post post);
 }

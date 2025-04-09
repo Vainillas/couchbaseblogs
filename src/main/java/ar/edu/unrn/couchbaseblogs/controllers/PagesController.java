@@ -19,9 +19,13 @@ public class PagesController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Recupera una pagina en base a su id")
-    public List<Page> getPageById(@PathVariable String id) {
-        // Implementa la lógica para recuperar una página por su ID
+    public Page getPageById(@PathVariable String id) {
         return this.pageService.findById(id);
+    }
+    @PostMapping
+    @Operation(summary = "Inserta una página")
+    public Page insertPage(@RequestBody Page page) {
+        return this.pageService.insertPage(page);
     }
 
     @ExceptionHandler(Exception.class)
