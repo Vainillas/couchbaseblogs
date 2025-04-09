@@ -37,4 +37,9 @@ public class CouchBasePageServiceImpl extends CouchBaseService implements PageSe
   public Page insertPage(Page page) {
     return template.upsertById(Page.class).one(page);
   }
+
+  @Override
+  public void deletePage(String id) {
+    template.removeById(Page.class).one(id);
+  }
 }

@@ -54,6 +54,11 @@ public class CouchBasePostServiceImpl extends CouchBaseService implements PostSe
 
   @Override
   public Post insertPost(Post post) {
-    return template.insertById(Post.class).one(post);
+    return template.upsertById(Post.class).one(post);
+  }
+
+  @Override
+  public void deletePost(String id) {
+    template.removeById(Post.class).one(id);
   }
 }
