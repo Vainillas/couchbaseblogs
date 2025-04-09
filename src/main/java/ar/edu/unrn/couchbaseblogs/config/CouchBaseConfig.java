@@ -12,11 +12,15 @@ import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.convert.WritingConverter;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
 import org.springframework.data.couchbase.core.convert.CustomConversions;
+import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 
 @Configuration
+@EnableCouchbaseRepositories({ "ar.edu.unrn" })
+@EnableTransactionManagement
 public class CouchBaseConfig extends AbstractCouchbaseConfiguration {
 
   private final ClusterEnvironment environment;
