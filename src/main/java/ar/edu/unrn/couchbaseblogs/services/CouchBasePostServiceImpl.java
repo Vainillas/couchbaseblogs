@@ -54,11 +54,6 @@ public class CouchBasePostServiceImpl extends CouchBaseService implements PostSe
 
   @Override
   public Post insertPost(Post post) {
-    return executeOperation(
-        collection -> {
-          collection.insert(post.getId(), post);
-          return post;
-        },
-            collectionName);
+    return template.insertById(Post.class).one(post);
   }
 }
