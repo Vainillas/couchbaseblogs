@@ -8,4 +8,6 @@ public interface PageService {
     Page findById(String id);
 
     Page insertPage(Page page);
+
+    void deletePage(String id);
 }

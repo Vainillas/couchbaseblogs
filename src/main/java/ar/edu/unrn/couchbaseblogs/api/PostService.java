@@ -18,4 +18,6 @@ public interface PostService {
     Post findPost(String id);
 
     Post insertPost(Post post);
+
+    void deletePost(String id);
 }
