@@ -8,73 +8,48 @@ import com.couchbase.client.java.json.JsonArray;
 import com.couchbase.client.java.query.QueryOptions;
 
 import java.util.List;
+
+import org.springframework.data.couchbase.core.CouchbaseTemplate;
+import org.springframework.data.couchbase.core.query.Query;
+import org.springframework.data.couchbase.core.query.QueryCriteria;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CouchBasePostServiceImpl extends CouchBaseService implements PostService {
     private final String collectionName = "posts";
-  public CouchBasePostServiceImpl(Cluster couchBaseCluster) {
+    private final CouchbaseTemplate template;
+
+  public CouchBasePostServiceImpl(Cluster couchBaseCluster, CouchbaseTemplate template) {
     super(couchBaseCluster);
+      this.template = template;
   }
-//TODO: Change collection name when created
   @Override
   public List<Post> getLatest4Posts() {
-    return executeOperation(
-        collection -> {
-          String query =
-              "SELECT * FROM "+ bucket.name() +" WHERE type = 'post' ORDER BY date DESC LIMIT 4";
-          return cluster.query(query).rowsAs(Post.class);
-        },
-        collectionName);
+    return template.findByQuery(Post.class).matching(
+            new Query().with(Sort.by(Sort.Order.desc("date"))).limit(4)).all().stream().toList();
   }
 
   @Override
   public List<Post> getPostsByAuthor(String nombreautor) {
-    return executeOperation(
-        collection -> {
-          String query = "SELECT * FROM "+ bucket.name() +" WHERE type = 'post' AND author = $1";
-          return cluster
-              .query(query, QueryOptions.queryOptions().parameters(JsonArray.from(nombreautor)))
-              .rowsAs(Post.class);
-        },
-            collectionName);
+      Query query = new Query().addCriteria(QueryCriteria.where("author").is(nombreautor));
+      return template.findByQuery(Post.class).matching(query).all();
   }
 
   @Override
   public List<Post> searchPosts(String text) {
-    return executeOperation(
-        collection -> {
-          String query =
-              "SELECT * FROM "+ bucket.name() +" WHERE type = 'post' AND (title LIKE $1 OR text LIKE $1)";
-          return cluster
-              .query(
-                  query, QueryOptions.queryOptions().parameters(JsonArray.from("%" + text + "%")))
-              .rowsAs(Post.class);
-        },
-            collectionName);
+    Query query = new Query().addCriteria(QueryCriteria.where("text").containing(true, text));
+    return template.findByQuery(Post.class).matching(query).all();
   }
 
   @Override
   public List<AuthorPostCount> getPostCounts() {
-    return executeOperation(
-        collection -> {
-          String query =
-              "SELECT author, COUNT(*) AS postCount FROM "+ bucket.name() +" WHERE type = 'post' GROUP BY author";
-          return cluster.query(query).rowsAs(AuthorPostCount.class);
-        },
-            collectionName);
+    return template.findByQuery(AuthorPostCount.class).all();
   }
 
   @Override
-  public List<Post> findPost(String id) {
-    return executeOperation(
-        collection -> {
-          String query = "SELECT * FROM "+ bucket.name() +" WHERE type = 'post' AND id = $1";
-          return cluster
-              .query(query, QueryOptions.queryOptions().parameters(JsonArray.from(id)))
-              .rowsAs(Post.class);
-        },
-            collectionName);
+  public Post findPost(String id) {
+    return template.findById(Post.class).one(id);
   }
 
   @Override

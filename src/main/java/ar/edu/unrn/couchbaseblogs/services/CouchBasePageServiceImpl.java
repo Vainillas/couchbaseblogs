@@ -10,44 +10,31 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.couchbase.core.CouchbaseTemplate;
+import org.springframework.data.couchbase.core.query.Query;
+import org.springframework.data.couchbase.core.query.QueryCriteria;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CouchBasePageServiceImpl extends CouchBaseService implements PageService {
   private final String collectionName = "pages";
+  private final CouchbaseTemplate template;
 
-    public CouchBasePageServiceImpl(Cluster couchbaseCluster) {
+    public CouchBasePageServiceImpl(Cluster couchbaseCluster, CouchbaseTemplate template) {
         super(couchbaseCluster);
+        this.template = template;
     }
 
-  // TODO: Change collection name when created
   @Override
-  public List<Page> findById(String id) {
-    return executeOperation(
-        collection -> {
-          String query = "SELECT * FROM " + bucket.name() + " WHERE type = 'page' AND id = $1";
-          return cluster
-              .query(query, QueryOptions.queryOptions().parameters(JsonArray.from(id)))
-              .rowsAs(Page.class);
-        },
-        collectionName);
+  @Transactional(readOnly = true)
+  public Page findById(String id) {
+    return template.findById(Page.class).one(id);
   }
 
   @Override
   public Page insertPage(Page page) {
-    return executeOperation(
-        collection -> {
-            // Convertir LocalDate a String antes de la inserción
-            Map<String, Object> pageMap = new HashMap<>();
-            pageMap.put("id", page.getId());
-            pageMap.put("title", page.getTitle());
-            pageMap.put("text", page.getText());
-            pageMap.put("author", page.getAuthor());
-            pageMap.put("date", page.getDate().format(DateTimeFormatter.ISO_LOCAL_DATE)); // Convierte LocalDate a String
-
-            collection.insert(page.getId(), pageMap);
-          return page;
-        },
-        collectionName);
+    return template.upsertById(Page.class).one(page);
   }
 }
