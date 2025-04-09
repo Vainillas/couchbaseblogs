@@ -4,8 +4,6 @@ import ar.edu.unrn.couchbaseblogs.api.PostService;
 import ar.edu.unrn.couchbaseblogs.dto.AuthorPostCount;
 import ar.edu.unrn.couchbaseblogs.model.Post;
 import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.json.JsonArray;
-import com.couchbase.client.java.query.QueryOptions;
 
 import java.util.List;
 
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CouchBasePostServiceImpl extends CouchBaseService implements PostService {
-    private final String collectionName = "posts";
     private final CouchbaseTemplate template;
 
   public CouchBasePostServiceImpl(Cluster couchBaseCluster, CouchbaseTemplate template) {

@@ -3,7 +3,6 @@ package ar.edu.unrn.couchbaseblogs.controllers;
 import ar.edu.unrn.couchbaseblogs.api.PageService;
 import ar.edu.unrn.couchbaseblogs.model.Page;
 import io.swagger.v3.oas.annotations.Operation;
-import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

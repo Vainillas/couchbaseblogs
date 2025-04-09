@@ -4,7 +4,6 @@ import ar.edu.unrn.couchbaseblogs.api.PageService;
 import ar.edu.unrn.couchbaseblogs.api.PostService;
 import ar.edu.unrn.couchbaseblogs.model.Page;
 import ar.edu.unrn.couchbaseblogs.model.Post;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -235,6 +234,6 @@ class CouchbaseblogsApplicationTests {
         //Limpiar la base de datos después de la prueba
         postService.deletePost("test-post-author-1");
         postService.deletePost("test-post-author-2");
-        
+
     }
 }
