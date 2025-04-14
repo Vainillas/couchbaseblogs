@@ -16,6 +16,12 @@ public class PagesController {
         this.pageService = pageService;
     }
 
+    @GetMapping
+    @Operation(summary = "Recupera todas las páginas")
+    public Page[] getAllPages() {
+        return this.pageService.findAll();
+    }
+
     @GetMapping("/{id}")
     @Operation(summary = "Recupera una pagina en base a su id")
     public Page getPageById(@PathVariable String id) {

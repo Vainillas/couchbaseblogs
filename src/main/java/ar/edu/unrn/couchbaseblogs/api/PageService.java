@@ -10,4 +10,6 @@ public interface PageService {
     Page insertPage(Page page);
 
     void deletePage(String id);
+
+    Page[] findAll();
 }

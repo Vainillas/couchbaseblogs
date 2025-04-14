@@ -33,4 +33,9 @@ public class CouchBasePageServiceImpl extends CouchBaseService implements PageSe
   public void deletePage(String id) {
     template.removeById(Page.class).one(id);
   }
+
+  @Override
+  public Page[] findAll() {
+    return template.findByQuery(Page.class).all().toArray(new Page[0]);
+  }
 }

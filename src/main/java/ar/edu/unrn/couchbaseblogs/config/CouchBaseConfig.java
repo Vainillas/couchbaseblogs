@@ -48,11 +48,4 @@ public class CouchBaseConfig extends AbstractCouchbaseConfiguration {
       this.environment = environment;
   }
 
-
-  @Bean
-  public Cluster couchBaseCluster(){
-    return Cluster.connect(getConnectionString(),
-            ClusterOptions.clusterOptions(getUserName(), getPassword()).environment(environment));
-  }
-
 }
