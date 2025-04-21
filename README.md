@@ -1,5 +1,3 @@
-//Generate a README.md file with startup instructions
-
 # Couchbase Blogs
 
 Esta es una aplicación SpringBoot que usa Couchbase como su base de datos. Está implementada de acuerdo a las

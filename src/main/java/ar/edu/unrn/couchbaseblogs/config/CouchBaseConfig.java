@@ -1,21 +1,16 @@
 package ar.edu.unrn.couchbaseblogs.config;
 
-import com.couchbase.client.java.Cluster;
-import com.couchbase.client.java.ClusterOptions;
+
 import com.couchbase.client.java.env.ClusterEnvironment;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.convert.ReadingConverter;
-import org.springframework.data.convert.WritingConverter;
+
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
-import org.springframework.data.couchbase.core.convert.CustomConversions;
+
 import org.springframework.data.couchbase.repository.config.EnableCouchbaseRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 
 @Configuration
 @EnableCouchbaseRepositories({ "ar.edu.unrn" })
