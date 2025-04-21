@@ -199,7 +199,7 @@ public class CouchbaseblogsApplication {
             .resume("El auto más vendido de los 90 en Argentina")
             .tags(Arrays.asList("Volkswagen", "Gol", "Argentina"))
             .relatedLinks(List.of("https://es.wikipedia.org/wiki/Volkswagen_Gol"))
-            .author("Aliberti Mateo")
+            .author("FanDeLosAutos1990")
             .date(farDate.toLocalDate())
             .build();
     Post post10 =
@@ -211,7 +211,7 @@ public class CouchbaseblogsApplication {
             .resume("Un clásico de los 90 en Argentina")
             .tags(Arrays.asList("Renault", "19", "Argentina"))
             .relatedLinks(List.of("https://es.wikipedia.org/wiki/Renault_19"))
-            .author("Aliberti Mateo")
+            .author("FanDeLosAutos1990")
             .date(farDate.toLocalDate())
             .build();
 
