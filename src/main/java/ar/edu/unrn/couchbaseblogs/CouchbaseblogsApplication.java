@@ -62,6 +62,7 @@ public class CouchbaseblogsApplication {
   private void insertPost() {
     LocalDateTime firstDate = LocalDateTime.now().minusDays(8);
     LocalDateTime secondDate = LocalDateTime.now().minusDays(10);
+    LocalDateTime farDate = LocalDateTime.now().minusDays(200);
     Post post1 =
         Post.builder()
             .id("1")
@@ -78,6 +79,7 @@ public class CouchbaseblogsApplication {
             .author("Aliberti Mateo")
             .date(firstDate.toLocalDate())
             .build();
+    postService.insertPost(post1);
     Post post2 =
         Post.builder()
             .id("2")
@@ -91,10 +93,106 @@ public class CouchbaseblogsApplication {
             .author("Aliberti Mateo")
             .date(secondDate.toLocalDate())
             .build();
+    postService.insertPost(post2);
 
     Post post3 =
+
         Post.builder()
             .id("3")
+            .title("El Argentinosaurus Huinculensis: El gigante de la Patagonia")
+            .text(
+                "El Argentinosaurus Huinculensis fue uno de los dinosaurios más grandes que jamás haya existido. Con un peso estimado de entre 70 y 100 toneladas, este gigante herbívoro dominó la Patagonia durante el período Cretácico.")
+            .resume(
+                "El Argentinosaurus Huinculensis, uno de los dinosaurios más grandes que jamás haya existido, dominó la Patagonia durante el período Cretácico.")
+            .tags(Arrays.asList("Patagonia", "Cretácico", "Herbívoro"))
+            .relatedLinks(
+                    List.of(
+                            "https://www.patagonia.com.ar/dinosaurios/661_Argentinosaurus+Huinculensis.html"))
+            .author("Aliberti Mateo")
+            .date(firstDate.toLocalDate())
+            .build();
+    postService.insertPost(post3);
+
+    Post post4 =
+        Post.builder()
+            .id("4")
+            .title("El Amargasaurus Cazaui: Un gigante con espinas")
+            .text(
+                "El Amargasaurus Cazaui fue un dinosaurio herbívoro que vivió en la Patagonia durante el período Cretácico. Este gigante se caracterizaba por tener una doble hilera de espinas a lo largo de su cuello y espalda.")
+            .resume(
+                "El Amargasaurus Cazaui, un dinosaurio herbívoro con una doble hilera de espinas a lo largo de su cuello y espalda, vivió en la Patagonia durante el período Cretácico.")
+            .tags(Arrays.asList("Patagonia", "Cretácico", "Herbívoro"))
+            .relatedLinks(
+                    List.of(
+                            "https://www.patagonia.com.ar/dinosaurios/659_Amargasaurus+Casuei.html"))
+            .author("Aliberti Mateo")
+            .date(secondDate.toLocalDate())
+            .build();
+    postService.insertPost(post4);
+
+    Post post5 = Post.builder()
+        .id("5")
+        .title("El Mapusaurus Roseae: Un depredador en manada")
+        .text(
+            "El Mapusaurus Roseae fue un dinosaurio carnívoro que vivió en la Patagonia durante el período Cretácico. Este depredador se caracterizaba por cazar en manada, lo que le permitía abatir presas de gran tamaño.")
+        .resume(
+            "El Mapusaurus Roseae, un depredador que cazaba en manada, vivió en la Patagonia durante el período Cretácico.")
+        .tags(Arrays.asList("Patagonia", "Cretácico", "Carnívoro"))
+        .relatedLinks(List.of("https://es.wikipedia.org/wiki/Mapusaurus_roseae"))
+        .author("Aliberti Mateo")
+        .date(firstDate.toLocalDate())
+        .build();
+    postService.insertPost(post5);
+
+    Post post6 =
+        Post.builder()
+            .id("6")
+            .title("El Saltasaurus Loricatus: Un gigante acorazado")
+            .text(
+                "El Saltasaurus Loricatus fue un dinosaurio herbívoro que vivió en la Patagonia durante el período Cretácico. Este gigante se caracterizaba por tener una armadura de placas óseas a lo largo de su cuerpo.")
+            .resume(
+                "El Saltasaurus Loricatus, un dinosaurio herbívoro con una armadura de placas óseas a lo largo de su cuerpo, vivió en la Patagonia durante el período Cretácico.")
+            .tags(Arrays.asList("Patagonia", "Cretácico", "Herbívoro"))
+            .relatedLinks(List.of("https://es.wikipedia.org/wiki/Saltasaurus_loricatus"))
+            .author("Aliberti Mateo")
+            .date(secondDate.toLocalDate())
+            .build();
+    postService.insertPost(post6);
+
+    Post post7 =
+        Post.builder()
+            .id("7")
+            .title("El Herrerasaurus Ischigualastensis: Un depredador temprano")
+            .text(
+                "El Herrerasaurus Ischigualastensis fue uno de los dinosaurios carnívoros más antiguos que se conocen. Con un peso estimado de entre 200 y 300 kilogramos, este depredador vivió en la Patagonia durante el período Triásico.")
+            .resume(
+                "El Herrerasaurus Ischigualastensis, uno de los dinosaurios carnívoros más antiguos que se conocen, vivió en la Patagonia durante el período Triásico.")
+            .tags(Arrays.asList("Patagonia", "Triásico", "Carnívoro"))
+            .relatedLinks(
+                    List.of("https://es.wikipedia.org/wiki/Herrerasaurus_ischigualastensis"))
+            .author("Aliberti Mateo")
+            .date(firstDate.toLocalDate())
+            .build();
+    postService.insertPost(post7);
+
+    Post post8 =
+        Post.builder()
+            .id("8")
+            .title("El Piatnitzkysaurus Floresi: Un depredador ágil")
+            .text(
+                "El Piatnitzkysaurus Floresi fue un dinosaurio carnívoro que vivió en la Patagonia durante el período Jurásico. Con un peso estimado de entre 400 y 500 kilogramos, este depredador se caracterizaba por su agilidad y velocidad.")
+            .resume(
+                "El Piatnitzkysaurus Floresi, un dinosaurio carnívoro ágil y veloz, vivió en la Patagonia durante el período Jurásico.")
+            .tags(Arrays.asList("Patagonia", "Jurásico", "Carnívoro"))
+            .relatedLinks(List.of("https://es.wikipedia.org/wiki/Piatnitzkysaurus_floresi"))
+            .author("Aliberti Mateo")
+            .date(secondDate.toLocalDate())
+            .build();
+    postService.insertPost(post8);
+
+    Post post9 =
+        Post.builder()
+            .id("9")
             .title("El Volkswagen Gol: El auto más vendido de los 90")
             .text(
                 "El Volkswagen Gol fue el auto más vendido de los 90 en Argentina. Un auto compacto, económico y confiable que se ganó el corazón de los argentinos.")
@@ -102,11 +200,11 @@ public class CouchbaseblogsApplication {
             .tags(Arrays.asList("Volkswagen", "Gol", "Argentina"))
             .relatedLinks(List.of("https://es.wikipedia.org/wiki/Volkswagen_Gol"))
             .author("Aliberti Mateo")
-            .date(secondDate.toLocalDate())
+            .date(farDate.toLocalDate())
             .build();
-    Post post4 =
+    Post post10 =
         Post.builder()
-            .id("4")
+            .id("10")
             .title("El Renault 19: Un clásico de los 90")
             .text(
                 "El Renault 19 fue uno de los autos más populares de los 90 en Argentina. Un auto familiar, cómodo y seguro que se ganó el respeto de los argentinos.")
@@ -114,20 +212,18 @@ public class CouchbaseblogsApplication {
             .tags(Arrays.asList("Renault", "19", "Argentina"))
             .relatedLinks(List.of("https://es.wikipedia.org/wiki/Renault_19"))
             .author("Aliberti Mateo")
-            .date(firstDate.toLocalDate())
+            .date(farDate.toLocalDate())
             .build();
 
-    postService.insertPost(post1);
-    postService.insertPost(post2);
-    postService.insertPost(post3);
-    postService.insertPost(post4);
+    postService.insertPost(post9);
+    postService.insertPost(post10);
   }
 
   @Bean
   public CommandLineRunner commandLineRunner() {
     return args -> {
-       //insertPage();
-       //insertPost();
+      // insertPage();
+      // insertPost();
     };
   }
 
