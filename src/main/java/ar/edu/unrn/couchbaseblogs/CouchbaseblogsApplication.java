@@ -45,7 +45,18 @@ public class CouchbaseblogsApplication {
             .date(today.toLocalDate())
             .build();
 
+    Page page2 =
+        Page.builder()
+            .id("2")
+            .title("Los autos de los 90 en Argentina")
+            .text(
+                "Un repaso por los autos que marcaron una época en Argentina. Desde el Volkswagen Gol hasta el Renault 19.")
+            .author("Aliberti Mateo")
+            .date(today.toLocalDate())
+            .build();
+
     pageService.insertPage(page1);
+    pageService.insertPage(page2);
   }
 
   private void insertPost() {
@@ -72,7 +83,7 @@ public class CouchbaseblogsApplication {
             .id("2")
             .title("El carnívoro más grande del mundo")
             .text(
-                "El 25 de julio de 1993, el mecánico desocupado Rubén Carolini se topó con los huesos fosilizados del que se transformaría en el dinosaurio carnívoro más grande del mundo, que desplazó del reinado nada menos que al famosísimo Tyranosuaurus Rex de Estados Unidos.")
+                "El 25 de julio de 1993, el mecánico desocupado Rubén Carolini se topó con los huesos fosilizados del que se transformaría en el dinosaurio carnívoro más grande del mundo, que desplazó del reinado nada menos que al famosísimo Tyrannosaurus Rex de Estados Unidos.")
             .resume("El descubrimiento del Gigante del Sur")
             .tags(Arrays.asList("Patagonia", "Cretácico", "Carnívoro"))
             .relatedLinks(
@@ -80,15 +91,43 @@ public class CouchbaseblogsApplication {
             .author("Aliberti Mateo")
             .date(secondDate.toLocalDate())
             .build();
+
+    Post post3 =
+        Post.builder()
+            .id("3")
+            .title("El Volkswagen Gol: El auto más vendido de los 90")
+            .text(
+                "El Volkswagen Gol fue el auto más vendido de los 90 en Argentina. Un auto compacto, económico y confiable que se ganó el corazón de los argentinos.")
+            .resume("El auto más vendido de los 90 en Argentina")
+            .tags(Arrays.asList("Volkswagen", "Gol", "Argentina"))
+            .relatedLinks(List.of("https://es.wikipedia.org/wiki/Volkswagen_Gol"))
+            .author("Aliberti Mateo")
+            .date(secondDate.toLocalDate())
+            .build();
+    Post post4 =
+        Post.builder()
+            .id("4")
+            .title("El Renault 19: Un clásico de los 90")
+            .text(
+                "El Renault 19 fue uno de los autos más populares de los 90 en Argentina. Un auto familiar, cómodo y seguro que se ganó el respeto de los argentinos.")
+            .resume("Un clásico de los 90 en Argentina")
+            .tags(Arrays.asList("Renault", "19", "Argentina"))
+            .relatedLinks(List.of("https://es.wikipedia.org/wiki/Renault_19"))
+            .author("Aliberti Mateo")
+            .date(firstDate.toLocalDate())
+            .build();
+
     postService.insertPost(post1);
     postService.insertPost(post2);
+    postService.insertPost(post3);
+    postService.insertPost(post4);
   }
 
   @Bean
   public CommandLineRunner commandLineRunner() {
     return args -> {
-      // insertPage();
-      // insertPost();
+       //insertPage();
+       //insertPost();
     };
   }
 
