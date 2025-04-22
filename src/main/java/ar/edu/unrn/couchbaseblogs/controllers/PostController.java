@@ -31,10 +31,10 @@ public class PostController {
         // Implementa la lógica para obtener todos los posts para un autor dado su nombre
         return this.postService.getPostsByAuthor(nombreautor);
     }
-    @GetMapping("/byauthor")
-    public List<AuthorPostCount> getPostCountByAuthor() {
-        // Implementa la lógica para obtener todos los posts para un autor dado su nombre
-        return this.postService.getPostCounts();
+    @GetMapping("/byauthor/{nombreautor}")
+    public AuthorPostCount getPostCountByAuthor(@PathVariable String nombreautor) {
+        // Implementa la lógica para obtener la cantidad total de posts de un autor dado su nombre
+        return this.postService.getPostCounts(nombreautor);
     }
     @GetMapping("/search/{text}")
     public List<Post> searchPosts(@PathVariable String text) {

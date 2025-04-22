@@ -7,9 +7,9 @@ import com.couchbase.client.java.Cluster;
 
 import java.util.List;
 
+import com.couchbase.client.java.json.JsonObject;
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
-import org.springframework.data.couchbase.core.query.Query;
-import org.springframework.data.couchbase.core.query.QueryCriteria;
+import org.springframework.data.couchbase.core.query.*;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -40,8 +40,11 @@ public class CouchBasePostServiceImpl extends CouchBaseService implements PostSe
   }
 
   @Override
-  public List<AuthorPostCount> getPostCounts() {
-    return template.findByQuery(AuthorPostCount.class).all();
+  public AuthorPostCount getPostCounts(String nombreautor) {
+    String statement = "SELECT COUNT(*) AS count, author FROM `couchbase-blogs`.posts WHERE author = $author GROUP BY author";
+    JsonObject placeHolder = JsonObject.create().put("author", nombreautor);
+    N1QLQuery query = new N1QLQuery(N1QLExpression.x(statement));
+    return template.findByQuery(AuthorPostCount.class).matching(query).oneValue();
   }
 
   @Override

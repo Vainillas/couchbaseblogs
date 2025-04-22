@@ -13,7 +13,7 @@ public interface PostService {
 
     List<Post> searchPosts(String text);
 
-    List<AuthorPostCount> getPostCounts();
+    AuthorPostCount getPostCounts(String nombreautor);
 
     Post findPost(String id);
 
