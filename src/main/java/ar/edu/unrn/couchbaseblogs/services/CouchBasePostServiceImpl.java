@@ -49,9 +49,8 @@ public class CouchBasePostServiceImpl extends CouchBaseService implements PostSe
       return AuthorPostCount.builder().count(count.intValue()).author(nombreautor).build();
   }
   @Override
-  public AuthorPostCount getPostCounts() {
-    Number count = postRepository.countPostsByAuthor();
-    return AuthorPostCount.builder().count(count.intValue()).author("ALA").build();
+  public AuthorPostCount[] getPostCounts() {
+      return postRepository.contarLosPostsPorAutor();
   }
 
   @Override

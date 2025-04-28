@@ -5,8 +5,6 @@ import ar.edu.unrn.couchbaseblogs.model.Post;
 import org.springframework.data.couchbase.repository.Query;
 import org.springframework.data.repository.Repository;
 
-import java.util.Map;
-
 public interface PostRepository extends Repository<Post,String> {
     /**
      * Cuenta la cantidad de posts para un autor específico.
@@ -18,15 +16,13 @@ public interface PostRepository extends Repository<Post,String> {
      * @return Un DTO con el conteo y el nombre del autor.
      */
     @Query("SELECT COUNT(*) AS count " +
-            "FROM #{#n1ql.bucket}.#{#n1ql.scope}.#{#n1ql.collection} " +
+            "FROM #{#n1ql.bucket}.#{#n1ql.scope}.posts " +
             "WHERE author = $1 " +
             "GROUP BY author")
     Number countPostsByAuthor(String author);
-    @Query("SELECT COUNT(*) AS count " +
-            "FROM #{#n1ql.bucket}.#{#n1ql.scope}.#{#n1ql.collection} " +
-            "WHERE author = $1 " +
+
+    @Query("SELECT UUID() as __id, COUNT(*) AS count, author " +
+            "FROM #{#n1ql.bucket}.#{#n1ql.scope}.posts " +
             "GROUP BY author")
-    Number countPostsByAuthor();
-
-
+    AuthorPostCount[] contarLosPostsPorAutor();
 }

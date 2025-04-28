@@ -14,7 +14,7 @@ public interface PostService {
     List<Post> searchPosts(String text);
 
     AuthorPostCount getPostCounts(String nombreautor);
-    AuthorPostCount getPostCounts();
+    AuthorPostCount[] getPostCounts();
 
     Post findPost(String id);
 

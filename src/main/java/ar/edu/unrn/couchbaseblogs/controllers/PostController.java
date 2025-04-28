@@ -37,7 +37,7 @@ public class PostController {
         return this.postService.getPostCounts(nombreautor);
     }
     @GetMapping("/byauthor")
-    public AuthorPostCount getPostCountByAuthor() {
+    public AuthorPostCount[] getPostCountByAuthor() {
         // Implementa la lógica para obtener la cantidad total de posts de un autor dado su nombre
         return this.postService.getPostCounts();
     }
