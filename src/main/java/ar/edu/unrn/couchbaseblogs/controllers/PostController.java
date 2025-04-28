@@ -36,6 +36,11 @@ public class PostController {
         // Implementa la lógica para obtener la cantidad total de posts de un autor dado su nombre
         return this.postService.getPostCounts(nombreautor);
     }
+    @GetMapping("/byauthor")
+    public AuthorPostCount getPostCountByAuthor() {
+        // Implementa la lógica para obtener la cantidad total de posts de un autor dado su nombre
+        return this.postService.getPostCounts();
+    }
     @GetMapping("/search/{text}")
     public List<Post> searchPosts(@PathVariable String text) {
         // Implementa la lógica para realizar una búsqueda libre dentro del texto del documento

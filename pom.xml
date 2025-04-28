@@ -47,12 +47,6 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-couchbase</artifactId>
 			<version>5.4.4</version>
-			<exclusions> <!-- exclude Couchbase Java SDK -->
-				<exclusion>
-					<groupId>com.couchbase.client</groupId>
-					<artifactId>java-client</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency> <!-- add dependency for specific Couchbase Java SDK version -->
 			<groupId>com.couchbase.client</groupId>

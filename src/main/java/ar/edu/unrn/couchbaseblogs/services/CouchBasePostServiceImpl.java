@@ -3,23 +3,27 @@ package ar.edu.unrn.couchbaseblogs.services;
 import ar.edu.unrn.couchbaseblogs.api.PostService;
 import ar.edu.unrn.couchbaseblogs.dto.AuthorPostCount;
 import ar.edu.unrn.couchbaseblogs.model.Post;
+import ar.edu.unrn.couchbaseblogs.repositories.PostRepository;
 import com.couchbase.client.java.Cluster;
 
 import java.util.List;
 
-import com.couchbase.client.java.json.JsonObject;
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
 import org.springframework.data.couchbase.core.query.*;
+import org.springframework.data.couchbase.repository.query.N1qlCountQueryCreator;
+import org.springframework.data.couchbase.repository.query.N1qlQueryCreator;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CouchBasePostServiceImpl extends CouchBaseService implements PostService {
     private final CouchbaseTemplate template;
+    private final PostRepository postRepository;
 
-  public CouchBasePostServiceImpl(Cluster couchBaseCluster, CouchbaseTemplate template) {
+  public CouchBasePostServiceImpl(Cluster couchBaseCluster, CouchbaseTemplate template, PostRepository postRepository) {
     super(couchBaseCluster);
       this.template = template;
+      this.postRepository = postRepository;
   }
   @Override
   public List<Post> getLatest4Posts() {
@@ -41,10 +45,13 @@ public class CouchBasePostServiceImpl extends CouchBaseService implements PostSe
 
   @Override
   public AuthorPostCount getPostCounts(String nombreautor) {
-    String statement = "SELECT COUNT(*) AS count, author FROM `couchbase-blogs`.posts WHERE author = $author GROUP BY author";
-    JsonObject placeHolder = JsonObject.create().put("author", nombreautor);
-    N1QLQuery query = new N1QLQuery(N1QLExpression.x(statement));
-    return template.findByQuery(AuthorPostCount.class).matching(query).oneValue();
+    Number count = postRepository.countPostsByAuthor(nombreautor);
+      return AuthorPostCount.builder().count(count.intValue()).author(nombreautor).build();
+  }
+  @Override
+  public AuthorPostCount getPostCounts() {
+    Number count = postRepository.countPostsByAuthor();
+    return AuthorPostCount.builder().count(count.intValue()).author("ALA").build();
   }
 
   @Override
