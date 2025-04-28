@@ -2,7 +2,6 @@ package ar.edu.unrn.couchbaseblogs.dto;
 
 import com.couchbase.client.core.deps.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
 
 @Getter
@@ -10,7 +9,7 @@ import org.springframework.data.annotation.PersistenceCreator;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AuthorPostCount {
-    private String id; // Asegúrate de tener este campo
+    private String id;
     private Integer count;
     private String author;
 

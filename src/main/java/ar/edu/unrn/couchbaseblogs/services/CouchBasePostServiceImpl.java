@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.springframework.data.couchbase.core.CouchbaseTemplate;
 import org.springframework.data.couchbase.core.query.*;
-import org.springframework.data.couchbase.repository.query.N1qlCountQueryCreator;
-import org.springframework.data.couchbase.repository.query.N1qlQueryCreator;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
